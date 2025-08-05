@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   List<ProductModel> product = [
     ProductModel(
       name: 'Banana',
@@ -66,7 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 CategoryItem(
                     imagePath: 'assets/assets/category/fruits.png',
                     label: 'Fruits',
-                    imageSize: 65),
+                    imageSize: 65
+                    
+                    ),
                     SizedBox(width: 12),
                 CategoryItem(
                     imagePath: 'assets/assets/category/egg.png',
@@ -126,37 +129,34 @@ Padding(
               productName: ' Banana',
               productDesc: '  4.8 (287)',
               productPrice: r'  $3.99',
-              onTap: (){},
+              onAddPressed: () {
+                setState(() {
+                  basketList.add(product[0].image);
+                });
+              },
             ),
             CustomCard(
               productImage: 'assets/assets/fruits/papper.png',
               productName: ' Pepper',
               productDesc: '  4.6 (235)',
               productPrice: r'  $2.99',
-              onTap: (){},
+              onAddPressed: () {
+                setState(() {
+                  basketList.add(product[1].image);
+                });
+              },
             ),
              CustomCard(
               productImage: 'assets/assets/fruits/orange.png',
               productName: ' Orange',
               productDesc: '  3.9 (118)',
               productPrice: r'  $4.99',
-              onTap: (){},
+              onAddPressed: () {
+                setState(() {
+                  basketList.add(product[2].image);
+                });
+              },
             ),
-            CustomCard(
-              productImage: 'assets/assets/fruits/download__2_-removebg-preview.png',
-              productName: ' Pineapple',
-              productDesc: '  2.4 (489)',
-              productPrice: r'  $7.99',
-              onTap: (){},
-            ),
-             CustomCard(
-              productImage: 'assets/assets/fruits/image-removebg-preview.png',
-              productName: ' Apple',
-              productDesc: '  3.2 (362)',
-              productPrice: r'  $5.79',
-              onTap: (){},
-            ),
-           
           ],
         ),
       ),
@@ -178,7 +178,7 @@ Padding(
                 width: 220,
             child: 
               ListView.builder(
-              itemCount: 4,
+              itemCount: basketList.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context , index){
                 return Padding(
@@ -192,7 +192,7 @@ Padding(
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(4),
-                              child: Image.asset('assets/assets/fruits/banana.png'),
+                              child: Image.asset(basketList[index]),
                             ),
                   ),
                 );
@@ -213,6 +213,22 @@ Padding(
               ),),
               Spacer(),
  SvgPicture.asset('assets/assets/icons/basket.svg',color: Colors.white,width: 25,height: 25,),
+              if(basketList.isNotEmpty)
+              Positioned(
+              right: 0,
+              top: 0,
+              child: 
+              CircleAvatar(
+                radius: 8,
+                backgroundColor: Colors.red,
+                child: Text(
+                  basketList.length.toString(),
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white
+                  ),
+                ),
+              ),),
               SizedBox(width: 10), 
              ],
           ),
