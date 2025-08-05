@@ -8,12 +8,14 @@ class CustomCard extends StatelessWidget {
     required this.productPrice,
     required this.productImage,
     required this.onAddPressed,
+    required this.onDeletePressed,
   });
   final productImage;
   final productName;
   final productDesc;
   final productPrice;
   final VoidCallback onAddPressed;
+  final VoidCallback onDeletePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +37,32 @@ class CustomCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+            Positioned(
+              top: 6,
+              left: 6,
+              child: GestureDetector(
+                onTap: onDeletePressed,
+                child: CircleAvatar(
+                  radius: 12,
+                  backgroundColor: Colors.red,
+                  child: Icon(
+                    Icons.close,
+                    size: 14,
+                    color: Colors.white,
+                  ),
+                ),
+              )
+              ),
            Positioned(
             bottom: 0,right: 5,
             child: 
-              const CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.white,
-                child:  Icon(Icons.add,),),
+              GestureDetector(
+                onTap: onAddPressed,
+                child: const CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.white,
+                  child:  Icon(Icons.add,),),
+              ),
             
              ),
             ],
