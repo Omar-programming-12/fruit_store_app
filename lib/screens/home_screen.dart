@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:fruit_store_app/models/category_model.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fruit_store_app/constants.dart';
 import 'package:fruit_store_app/models/product_model.dart';
 import 'package:fruit_store_app/widgets/category_item.dart';
 import 'package:fruit_store_app/widgets/custom_app_bar.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
       
     )
   ];
-     
+  List basketList = [];
   @override
   void initState() {
     super.initState();
@@ -125,23 +126,101 @@ Padding(
               productName: ' Banana',
               productDesc: '  4.8 (287)',
               productPrice: r'  $3.99',
+              onTap: (){},
             ),
             CustomCard(
               productImage: 'assets/assets/fruits/papper.png',
               productName: ' Pepper',
               productDesc: '  4.6 (235)',
               productPrice: r'  $2.99',
+              onTap: (){},
             ),
              CustomCard(
               productImage: 'assets/assets/fruits/orange.png',
               productName: ' Orange',
               productDesc: '  3.9 (118)',
               productPrice: r'  $4.99',
+              onTap: (){},
+            ),
+            CustomCard(
+              productImage: 'assets/assets/fruits/download__2_-removebg-preview.png',
+              productName: ' Pineapple',
+              productDesc: '  2.4 (489)',
+              productPrice: r'  $7.99',
+              onTap: (){},
+            ),
+             CustomCard(
+              productImage: 'assets/assets/fruits/image-removebg-preview.png',
+              productName: ' Apple',
+              productDesc: '  3.2 (362)',
+              productPrice: r'  $5.79',
+              onTap: (){},
             ),
            
           ],
         ),
       ),
+      SizedBox(height: 10,),      //Cart Widget
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: Container(
+          width: double.infinity,
+          height: 70,
+          decoration: BoxDecoration(
+            color: kPrimaryColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            
+            children: [
+              
+              SizedBox(
+                width: 220,
+            child: 
+              ListView.builder(
+              itemCount: 4,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context , index){
+                return Padding(
+                  padding: const EdgeInsets.only(left: 5.5),
+                  child: Container(
+                     width: 45,
+                     height: 45,
+                               decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Image.asset('assets/assets/fruits/banana.png'),
+                            ),
+                  ),
+                );
+              },
+            ),
+              ),
+              
+               Container(
+                width: 2,
+                height: 40,
+                color: Colors.white,
+                  
+              ),
+              Text('  View Basket' , style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),),
+              Spacer(),
+ SvgPicture.asset('assets/assets/icons/basket.svg',color: Colors.white,width: 25,height: 25,),
+              SizedBox(width: 10), 
+             ],
+          ),
+      
+          
+        ),
+      ),
+      SizedBox(height: 10,),
     ],
   ),
 ),
@@ -156,9 +235,3 @@ Padding(
     );
   }
 }
-
-
-
-
-                   
-

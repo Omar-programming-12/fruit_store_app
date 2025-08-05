@@ -7,28 +7,49 @@ class CustomCard extends StatelessWidget {
     required this.productDesc,
     required this.productPrice,
     required this.productImage,
+    required this.onTap,
+    this.onAddPressed,
   });
   final productImage;
   final productName;
   final productDesc;
   final productPrice;
-
+  final Function()? onTap;
+  final VoidCallback? onAddPressed;  
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(10),
+          Stack(
+            children: [
+               Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: EdgeInsets.all(10),
+              child: Image.asset(
+                productImage,
+                height: 136,
+                fit: BoxFit.cover,
+              ),
             ),
-            padding: EdgeInsets.all(10),
-            child: Image.asset(
-              productImage,
-              width: 136,
-            ),
+            Positioned(
+            bottom: 0,right: 5,
+            child: 
+               GestureDetector(
+                onTap: onTap,
+                 child: CircleAvatar(
+                 radius: 16,
+                  backgroundColor: Colors.white,
+                  child:  IconButton(onPressed: onAddPressed, icon: Icon(Icons.add),),),
+               ),
+            
+             ),
+            ],
+            
           ),
           Padding(
             padding: const EdgeInsets.only(right: 10),

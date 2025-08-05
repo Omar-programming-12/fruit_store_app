@@ -3,7 +3,7 @@ import 'package:fruit_store_app/screens/home_screen.dart';
 import 'package:fruit_store_app/screens/splash_screen.dart';
 
 void main() {
-  runApp(const FruitStoreApp());
+  runApp(const FruitStoreApp()); 
 }
 
 class FruitStoreApp extends StatelessWidget {
@@ -21,7 +21,11 @@ class FruitStoreApp extends StatelessWidget {
 
 // Steps To Build (UI)
 // Step 1: Splash Screen => Screen take 3 seconds to pop to home view // Done
-// Step 2: AppBar => Adress & Icons
-// Step 3: Offers Section => 
-// Step 4: Categories List =>
-// Step 5: Fruits List =>
+// Step 2: AppBar => Adress & Icons // Done
+// Step 3: Offers Section => // Done
+// Step 4: Categories List => // Done
+// Step 5: Fruits List => // Done
+ 
+   //////////////////////////////
+/// Steps TO Build (UX)
+///  
