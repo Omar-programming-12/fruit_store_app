@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatelessWidget {
+class CustomCard extends StatefulWidget {
   const CustomCard({
     super.key,
     required this.productName,
@@ -8,15 +8,20 @@ class CustomCard extends StatelessWidget {
     required this.productPrice,
     required this.productImage,
     required this.onAddPressed,
-    required this.onDeletePressed,
   });
   final productImage;
   final productName;
   final productDesc;
   final productPrice;
   final VoidCallback onAddPressed;
-  final VoidCallback onDeletePressed;
 
+
+  @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+  bool isAdded = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,24 +37,25 @@ class CustomCard extends StatelessWidget {
               ),
               padding: EdgeInsets.all(10),
               child: Image.asset(
-                productImage,
+                widget.productImage,
                 height: 136,
                 fit: BoxFit.cover,
               ),
             ),
+            if(isAdded)
             Positioned(
-              top: 6,
-              left: 6,
+              top: 5,
+              right: 5,
               child: GestureDetector(
-                onTap: onDeletePressed,
+                onTap: (){
+                  setState(() {
+                    isAdded = false;
+                  });
+                },
                 child: CircleAvatar(
-                  radius: 12,
+                  radius: 10,
                   backgroundColor: Colors.red,
-                  child: Icon(
-                    Icons.close,
-                    size: 14,
-                    color: Colors.white,
-                  ),
+                  child: Icon(Icons.close,size: 12,color: Colors.white,),
                 ),
               )
               ),
@@ -57,7 +63,12 @@ class CustomCard extends StatelessWidget {
             bottom: 0,right: 5,
             child: 
               GestureDetector(
-                onTap: onAddPressed,
+                onTap: (){
+                  setState(() {
+                    isAdded = true;
+                  });
+                  widget.onAddPressed();
+                },
                 child: const CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.white,
@@ -74,7 +85,7 @@ class CustomCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  productName,
+                  widget.productName,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 SizedBox(height: 10),
@@ -86,7 +97,7 @@ class CustomCard extends StatelessWidget {
                       width: 18,
                     ),
                     Text(
-                      productDesc,
+                      widget.productDesc,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
@@ -96,7 +107,7 @@ class CustomCard extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  productPrice,
+                  widget.productPrice,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
