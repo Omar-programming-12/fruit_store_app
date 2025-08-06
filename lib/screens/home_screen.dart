@@ -154,6 +154,7 @@ Padding(
                 setState(() {
                   basketList.add(product[0].image);
                 });
+                basketList : basketList;
               },
               onRemovePressed: () {
      setState(() {
@@ -171,6 +172,7 @@ Padding(
                   basketList.add(product[1].image);
                 });
               },
+
               
              onRemovePressed: () {
     setState(() {
@@ -246,9 +248,9 @@ Padding(
               TextButton(onPressed: (){
            showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet(basketList: basketList)
               );},
-             child:const Text(' View Basket' , style: TextStyle(
+             child:const Text('View Basket' , style: TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),), ),
               Spacer(),
