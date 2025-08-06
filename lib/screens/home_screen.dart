@@ -10,28 +10,9 @@ import 'package:fruit_store_app/widgets/custom_show_modal_sheet.dart';
 import 'package:fruit_store_app/widgets/fruit_slider_state.dart';
 
 class HomeScreen extends StatefulWidget {
-   HomeScreen({super.key,required this.basketList});
+   HomeScreen({super.key,});
    
-List<Map<String , dynamic>> basketList = [
-  {
-    'image': 'assets/assets/fruits/banana.png',
-    'title': 'Banana',
-    'quantity': 1,
-    'price': 3.99,
-  },
-  {
-    'image': 'assets/assets/fruits/papper.png',
-    'title': 'Pepper',
-    'quantity': 1,
-    'price': 2.99,
-  },
-  {
-    'image': 'assets/assets/fruits/orange.png',
-    'title': 'Orange',
-    'quantity': 1,
-    'price': 4.99,
-  }  
- ];
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -63,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     )
   ];
   List basketList = [];
+  bool showCartButton = false;
   @override
   void initState() {
     super.initState();
@@ -153,8 +135,8 @@ Padding(
               onAddPressed: () {
                 setState(() {
                   basketList.add(product[0].image);
+                  showCartButton = true;
                 });
-                basketList : basketList;
               },
               onRemovePressed: () {
      setState(() {
@@ -170,9 +152,9 @@ Padding(
               onAddPressed: () {
                 setState(() {
                   basketList.add(product[1].image);
+                  showCartButton = true;
                 });
               },
-
               
              onRemovePressed: () {
     setState(() {
@@ -188,6 +170,7 @@ Padding(
               onAddPressed: () {
                 setState(() {
                   basketList.add(product[2].image);
+                  showCartButton = true;
                 });
               },
             onRemovePressed: () {
@@ -214,7 +197,7 @@ Padding(
             children: [
               
               SizedBox(
-                width: 220,
+                width: 200,
             child: 
               ListView.builder(
               itemCount: basketList.length,
@@ -246,19 +229,25 @@ Padding(
                   
               ),
               TextButton(onPressed: (){
-           showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet(basketList: basketList)
+           showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet(),
               );},
-             child:const Text('View Basket' , style: TextStyle(
+             child: TextButton(onPressed: (){
+                 showModalBottomSheet(context: context, builder: (context){
+                  return BasketBottomSheet();
+                 });
+            },
+             child: Text('View Basket' , style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
-              ),), ),
-              Spacer(),
- SvgPicture.asset('assets/assets/icons/basket.svg',color: Colors.white,width: 25,height: 25,),
+              ),),)
+              ),
+
+ SvgPicture.asset('assets/assets/icons/basket.svg',color: Colors.white,width: 20,height: 20,),
               if(basketList.isNotEmpty)
               Positioned(
-              right: 0,
-              top: 0,
+              right: 15,
+              top: 15,
               child: 
               CircleAvatar(
                 radius: 8,
@@ -288,7 +277,7 @@ Padding(
            ),
          ),
        ),
-
+      
       
     );
   }

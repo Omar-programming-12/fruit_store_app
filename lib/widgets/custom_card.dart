@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_store_app/widgets/custom_show_modal_sheet.dart';
-import 'package:fruit_store_app/screens/home_screen.dart';
+
 class CustomCard extends StatefulWidget {
   const CustomCard({
     super.key,
@@ -9,8 +8,7 @@ class CustomCard extends StatefulWidget {
     required this.productPrice,
     required this.productImage,
     required this.onAddPressed,
-    this.onRemovePressed, 
-    required this.basketList,
+     this.onRemovePressed,
   });
   final productImage;
   final productName;
@@ -18,7 +16,6 @@ class CustomCard extends StatefulWidget {
   final productPrice;
   final VoidCallback onAddPressed;
   final VoidCallback? onRemovePressed;
-  final List<dynamic> basketList;
 
 
   @override
@@ -72,12 +69,6 @@ class _CustomCardState extends State<CustomCard> {
                 onTap: (){
                   setState(() {
                     isAdded = true;
-                  });
-                  basketList.add({
-                    'image':widget.productImage,
-                    'title': widget.productName,
-                    'price': widget.productPrice,
-                    'quantity': 1,
                   });
                   widget.onAddPressed();
                 },

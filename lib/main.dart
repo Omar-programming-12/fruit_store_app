@@ -10,7 +10,7 @@ class FruitStoreApp extends StatelessWidget {
   const FruitStoreApp({super.key});
 
   // This widget is the root of your application.
-  @override
+  @override 
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
