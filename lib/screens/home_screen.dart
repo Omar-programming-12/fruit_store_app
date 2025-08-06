@@ -224,7 +224,7 @@ Padding(
                   
               ),
               TextButton(onPressed: (){
-                showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet()
+           showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet(basketList: basketList,)
               );},
              child:const Text('  View Basket' , style: TextStyle(
                 color: Colors.white,
