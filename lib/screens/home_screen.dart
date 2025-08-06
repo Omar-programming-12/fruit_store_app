@@ -6,6 +6,7 @@ import 'package:fruit_store_app/models/product_model.dart';
 import 'package:fruit_store_app/widgets/category_item.dart';
 import 'package:fruit_store_app/widgets/custom_app_bar.dart';
 import 'package:fruit_store_app/widgets/custom_card.dart';
+import 'package:fruit_store_app/widgets/custom_show_modal_sheet.dart';
 import 'package:fruit_store_app/widgets/fruit_slider_state.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -134,6 +135,11 @@ Padding(
                   basketList.add(product[0].image);
                 });
               },
+              onRemovePressed: () {
+     setState(() {
+      basketList.remove(product[0].image);
+    });
+  },
             ),
             CustomCard(
               productImage: 'assets/assets/fruits/papper.png',
@@ -145,6 +151,12 @@ Padding(
                   basketList.add(product[1].image);
                 });
               },
+              
+             onRemovePressed: () {
+    setState(() {
+      basketList.remove(product[1].image);
+    });
+  },
             ),
              CustomCard(
               productImage: 'assets/assets/fruits/orange.png',
@@ -156,6 +168,11 @@ Padding(
                   basketList.add(product[2].image);
                 });
               },
+            onRemovePressed: () {
+    setState(() {
+      basketList.remove(product[2].image);
+    });
+  },
             ),
           ],
         ),
@@ -206,11 +223,14 @@ Padding(
                 color: Colors.white,
                   
               ),
-              Text('  View Basket' , style: TextStyle(
+              TextButton(onPressed: (){
+                showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet()
+              );},
+             child:const Text('  View Basket' , style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-              ),),
+              ),), ),
               Spacer(),
  SvgPicture.asset('assets/assets/icons/basket.svg',color: Colors.white,width: 25,height: 25,),
               if(basketList.isNotEmpty)

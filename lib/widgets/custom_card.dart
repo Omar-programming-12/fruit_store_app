@@ -8,12 +8,14 @@ class CustomCard extends StatefulWidget {
     required this.productPrice,
     required this.productImage,
     required this.onAddPressed,
+     this.onRemovePressed,
   });
   final productImage;
   final productName;
   final productDesc;
   final productPrice;
   final VoidCallback onAddPressed;
+  final VoidCallback? onRemovePressed;
 
 
   @override
@@ -51,6 +53,7 @@ class _CustomCardState extends State<CustomCard> {
                   setState(() {
                     isAdded = false;
                   });
+                  widget.onRemovePressed!();
                 },
                 child: CircleAvatar(
                   radius: 10,
