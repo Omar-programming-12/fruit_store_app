@@ -10,8 +10,28 @@ import 'package:fruit_store_app/widgets/custom_show_modal_sheet.dart';
 import 'package:fruit_store_app/widgets/fruit_slider_state.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+   HomeScreen({super.key,required this.basketList});
+   
+List<Map<String , dynamic>> basketList = [
+  {
+    'image': 'assets/assets/fruits/banana.png',
+    'title': 'Banana',
+    'quantity': 1,
+    'price': 3.99,
+  },
+  {
+    'image': 'assets/assets/fruits/papper.png',
+    'title': 'Pepper',
+    'quantity': 1,
+    'price': 2.99,
+  },
+  {
+    'image': 'assets/assets/fruits/orange.png',
+    'title': 'Orange',
+    'quantity': 1,
+    'price': 4.99,
+  }  
+ ];
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -224,9 +244,9 @@ Padding(
                   
               ),
               TextButton(onPressed: (){
-           showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet(basketList: basketList,)
+           showModalBottomSheet(context: context, builder: (context) => BasketBottomSheet(basketList: basketList)
               );},
-             child:const Text('  View Basket' , style: TextStyle(
+             child:const Text(' View Basket' , style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
